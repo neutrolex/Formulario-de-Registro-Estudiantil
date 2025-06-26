@@ -51,4 +51,4 @@ Este proyecto consiste en una aplicación web básica que permite registrar estu
 - Piero Aguilar
 - Gabriel Tuñoque 
 - Josue Tuñoque
-- 
+  
