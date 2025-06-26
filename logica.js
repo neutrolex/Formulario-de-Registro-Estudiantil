@@ -3,14 +3,12 @@ const tabla = document.querySelector("#tablaEstudiantes tbody");
 const mensaje = document.getElementById("mensaje");
 const filtroCarrera = document.getElementById("filtrocarrera");
 
-// Función POST: guardar en localStorage
 function postEstudiante(estudiante) {
     let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
     estudiantes.push(estudiante);
     localStorage.setItem("estudiantes", JSON.stringify(estudiantes));
 }
 
-// Función GET: recuperar datos filtrados o todos
 function getEstudiantes(carrera = "todos") {
     let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
     if (carrera !== "todos") {
@@ -19,7 +17,6 @@ function getEstudiantes(carrera = "todos") {
     return estudiantes;
 }
 
-// Función para actualizar la tabla
 function mostrarEstudiantes(carrera = "todos") {
     const lista = getEstudiantes(carrera);
     tabla.innerHTML = "";
@@ -37,7 +34,6 @@ function mostrarEstudiantes(carrera = "todos") {
         });
 }
 
-// Evento: al registrar estudiante
 formulario.addEventListener("submit", e => {
     e.preventDefault();
     const nombre = document.getElementById("nombre").value.trim();
@@ -56,10 +52,8 @@ formulario.addEventListener("submit", e => {
     mostrarEstudiantes(filtroCarrera.value);
 });
 
-// Evento: al filtrar por carrera
 filtroCarrera.addEventListener("change", () => {
     mostrarEstudiantes(filtroCarrera.value);
 });
 
-// Mostrar al iniciar
 mostrarEstudiantes();
