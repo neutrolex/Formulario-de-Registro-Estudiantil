@@ -6,6 +6,33 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="">
+        <h2> Formulario de Registro</h2>
+        <form id="registroForm">
+            Nombre <input type="text" id="nombre" placeholder="Nombre Completo" required><br><br>
+            Edad <input type="number" id="edad" placeholder="Ingresar edad" required min="0"><br><br>
+            <select id="carrera" required>
+                <option value="">Selecciona tu carrera</option>
+                <option value="Ingenieria">Ingenieria</option>
+                <option value="Medicina">Medicina</option>
+                <option value="Derecho">Derecho</option>
+            </select>
+            <button type="submit">Registrar</button>
+            <p id="mensaje" class="mensaje"></p>
+        </form>
+        <h4>Estudiantes Registrados</h4>
+        <select id="Filtrocarrera" required>
+                <option value="Ingenieria">Ingenieria</option>
+                <option value="Medicina">Medicina</option>
+                <option value="Derecho">Derecho</option>
+        </select><br><br>
+        <table id="tablaEstudiantes">
+            <thead>
+                <tr> <th> Nombre</th> <th> Edad</th> <th> Carrera</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <script src="index.js"></script>
+    </div>
 </body>
 </html>
