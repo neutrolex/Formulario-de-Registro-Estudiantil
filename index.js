@@ -57,4 +57,5 @@ function filtrarPorCarrera() {
         ? estudiantes
         : estudiantes.filter(estudiante => estudiante.carrera === filtro);
     mostrarEstudiantes(estudiantesFiltrados);
+
 }
