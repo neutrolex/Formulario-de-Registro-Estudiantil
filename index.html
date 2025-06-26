@@ -1,35 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Formulario de Registro</title>
 </head>
 <body>
-    <div class="">
-        <h2> Formulario de Registro</h2>
+    <div>
+        <h2>Formulario de Registro</h2>
         <form id="registroForm">
-            <label>Nombre <input type="text" id="nombre" placeholder="Nombre Completo" required><br><br></label>
-            <label>Edad <input type="number" id="edad" placeholder="Ingresar edad" required min="0"><br><br></label>
-            <select id="carrera" required>
-                <option value="">Selecciona tu carrera</option>
-                <option value="Ingenieria">Ingenieria</option>
-                <option value="Medicina">Medicina</option>
-                <option value="Derecho">Derecho</option>
-            </select><br><br>
+            <label>Nombre 
+                <input type="text" id="nombre" placeholder="Nombre Completo" required>
+            </label>
+            <br><br>
+            <label>Edad 
+                <input type="number" id="edad" placeholder="Ingresar edad" required min="0">
+            </label>
+            <br><br>
+            <label>Carrera
+                <select id="carrera" required>
+                    <option value="">Selecciona tu carrera</option>
+                    <option value="Ingenieria">Ingenieria</option>
+                    <option value="Medicina">Medicina</option>
+                    <option value="Derecho">Derecho</option>
+                </select>
+            </label>
+            <br><br>
             <button type="submit">Registrar</button>
             <p id="mensaje" class="mensaje"></p>
         </form>
         <h4>Estudiantes Registrados</h4>
-        <select id="Filtrocarrera" required>
-                <option value="Ingenieria">Ingenieria</option>
-                <option value="Medicina">Medicina</option>
-                <option value="Derecho">Derecho</option>
-        </select><br><br>
+        <select id="filtrocarrera">
+            <option value="todos">Todos</option>
+            <option value="Ingenieria">Ingenieria</option>
+            <option value="Medicina">Medicina</option>
+            <option value="Derecho">Derecho</option>
+        </select>
+        <br><br>
         <table id="tablaEstudiantes">
             <thead>
-                <tr> <th> Nombre</th> <th> Edad</th> <th> Carrera</th></tr>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Carrera</th>
+                </tr>
             </thead>
             <tbody></tbody>
         </table>

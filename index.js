@@ -1,38 +1,60 @@
-const x = []
+const estudiantes = [];
 
-function agregarx(nombre,edad,carrera){
-    if (edad <= 16){
-        console.log("No se pudo agregar por ser menor de edad")
-        return
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("registroForm");
+    const filtro = document.getElementById("filtrocarrera");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        registrarEstudiante();
+    });
+    filtro.addEventListener("change", () => {
+        filtrarPorCarrera();
+    });
+    mostrarEstudiantes(estudiantes);
+});
+
+function registrarEstudiante() {
+    const nombre = document.getElementById("nombre").value.trim();
+    const edad = parseFloat(document.getElementById("edad").value);
+    const carrera = document.getElementById("carrera").value;
+    const mensaje = document.getElementById("mensaje");
+
+    if (!nombre || !edad || !carrera) {
+        mensaje.innerText = "Rellene todos los campos";
+        mensaje.style.color = "red";
+        return;
     }
-    const x = {nombre, edad, carrera}
-    x.push(x)
-    console.log("Se ha agregado correctamente")   
+    if (edad <= 16) {
+        mensaje.innerText = "Edad no válida";
+        mensaje.style.color = "red";
+        return;
+    }
+    estudiantes.push({ nombre, edad, carrera });
+    mensaje.innerText = "Estudiante registrado correctamente";
+    mensaje.style.color = "green";
+
+    document.getElementById("registroForm").reset();
+    mostrarEstudiantes(estudiantes);
 }
 
-function listax(){
-    if (x.length === 0) {
-        console.log("No hay datos para mostrar")
-    }
-    else {
-        console.log("No tenemos estudiantes registrados")
-        x.forEach((a, i) =>{
-            console.log('s{i + 1}. Nombre: ${a.nombre}, Edad: ${a.edad}, Carrera: ${a.carrera}')
-        })
-    }
+function mostrarEstudiantes(lista) {
+    const tbody = document.querySelector("#tablaEstudiantes tbody");
+    tbody.innerHTML = "";
+    lista.forEach((estudiante, index) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${estudiante.nombre}</td>
+            <td>${estudiante.edad}</td>
+            <td>${estudiante.carrera}</td>
+        `;
+    });
 }
 
-function filtrarx(carrera){
-    const filtrados = x.filter(a => a.carrera === carrera)
-    if (filtrados.length === 0) {
-        console.log("No hay estudiantes en la carrera ${carrera}")
-    } else {
-        console.log("Estudiantes en la carrera ${carrera}:")
-        filtrados.forEach((a, i) => {
-            console.log('${i + 1}. Nombre: ${a.nombre}, Edad: ${a.edad}')
-        })
-    }
+function filtrarPorCarrera() {
+    const filtro = document.getElementById("filtrocarrera").value;
+    const estudiantesFiltrados = filtro === "todos"
+        ? estudiantes
+        : estudiantes.filter(estudiante => estudiante.carrera === filtro);
+    mostrarEstudiantes(estudiantesFiltrados);
 }
-
-
-
