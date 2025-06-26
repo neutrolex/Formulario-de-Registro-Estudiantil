@@ -3,6 +3,7 @@ const tabla = document.querySelector("#tablaEstudiantes tbody");
 const mensaje = document.getElementById("mensaje");
 const filtroCarrera = document.getElementById("filtrocarrera");
 
+//Metodo Post y Get utilizado correctamente para almacenar y recuperar datos de estudiante registrados en el localStorage.
 function postEstudiante(estudiante) {
   let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
   estudiantes.push(estudiante);
