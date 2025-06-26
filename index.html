@@ -8,48 +8,50 @@
 </head>
 <body>
     <div>
-        <h2>Formulario de Registro</h2>
-        <form id="registroForm">
-            <label>Nombre 
-                <input type="text" id="nombre" placeholder="Nombre Completo" required>
-            </label>
-            <br><br>
-            <label>Edad 
-                <input type="number" id="edad" placeholder="Ingresar edad" required min="0">
-            </label>
-            <br><br>
-            <label>Carrera
-                <select id="carrera" required>
-                    <option value="">Selecciona tu carrera</option>
-                    <option value="Ingenieria">Ingenieria</option>
-                    <option value="Medicina">Medicina</option>
-                    <option value="Derecho">Derecho</option>
-                </select>
-            </label>
-            <br><br>
-            <button type="submit">Registrar</button>
-            <p id="mensaje" class="mensaje"></p>
-        </form>
-        <h4>Estudiantes Registrados</h4>
-        <select id="filtrocarrera">
-            <option value="todos">Todos</option>
+    <h2>Formulario de Registro</h2>
+    <form id="formulario">
+        <label>Nombre 
+        <input type="text" id="nombre" placeholder="Nombre Completo" required>
+        </label>
+        <br><br>
+        <label>Edad 
+        <input type="number" id="edad" placeholder="Ingresar edad" required min="0">
+        </label>
+        <br><br>
+        <label>Carrera
+        <select id="carrera" required>
+            <option value="">Selecciona tu carrera</option>
             <option value="Ingenieria">Ingenieria</option>
             <option value="Medicina">Medicina</option>
             <option value="Derecho">Derecho</option>
         </select>
+        </label>
         <br><br>
-        <table id="tablaEstudiantes">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Edad</th>
-                    <th>Carrera</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <script src="logica.js"></script>
+        <button type="submit">Registrar</button>
+        <p id="error" class="mensaje"></p> <!-- este ID fue corregido -->
+    </form>
+
+    <h4>Estudiantes Registrados</h4>
+    <select id="filtroCarrera"> <!-- este ID fue corregido -->
+        <option value="">Todos</option>
+        <option value="Ingenieria">Ingenieria</option>
+        <option value="Medicina">Medicina</option>
+        <option value="Derecho">Derecho</option>
+    </select>
+    <br><br>
+
+    <table id="tabla"> <!-- este ID fue corregido -->
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Carrera</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="logica.js"></script>
     </div>
 </body>
-</html>
+</html> 

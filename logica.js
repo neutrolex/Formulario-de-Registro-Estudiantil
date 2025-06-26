@@ -1,61 +1,65 @@
-const estudiantes = [];
+const formulario = document.getElementById("registroForm");
+const tabla = document.querySelector("#tablaEstudiantes tbody");
+const mensaje = document.getElementById("mensaje");
+const filtroCarrera = document.getElementById("filtrocarrera");
 
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("registroForm");
-    const filtro = document.getElementById("filtrocarrera");
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        registrarEstudiante();
-    });
-    filtro.addEventListener("change", () => {
-        filtrarPorCarrera();
-    });
-    mostrarEstudiantes(estudiantes);
+// Función POST: guardar en localStorage
+function postEstudiante(estudiante) {
+    let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
+    estudiantes.push(estudiante);
+    localStorage.setItem("estudiantes", JSON.stringify(estudiantes));
+}
+
+// Función GET: recuperar datos filtrados o todos
+function getEstudiantes(carrera = "todos") {
+    let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
+    if (carrera !== "todos") {
+        estudiantes = estudiantes.filter(e => e.carrera === carrera);
+    }
+    return estudiantes;
+}
+
+// Función para actualizar la tabla
+function mostrarEstudiantes(carrera = "todos") {
+    const lista = getEstudiantes(carrera);
+    tabla.innerHTML = "";
+    lista.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    lista.forEach((e, i) => {
+    const fila = `
+        <tr>
+        <td>${i + 1}</td>
+        <td>${e.nombre}</td>
+        <td>${e.edad}</td>
+        <td>${e.carrera}</td>
+        </tr>
+    `;
+    tabla.innerHTML += fila;
+        });
+}
+
+// Evento: al registrar estudiante
+formulario.addEventListener("submit", e => {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value.trim();
+    const edad = parseInt(document.getElementById("edad").value);
+    const carrera = document.getElementById("carrera").value;
+
+    if (edad <= 16) {
+    mensaje.textContent = "⚠️ La edad debe ser mayor a 16.";
+    return;
+    }
+
+    const estudiante = { nombre, edad, carrera };
+    postEstudiante(estudiante);
+    mensaje.textContent = "";
+    formulario.reset();
+    mostrarEstudiantes(filtroCarrera.value);
 });
 
-function registrarEstudiante() {
-    const nombre = document.getElementById("nombre").value.trim();
-    const edad = parseFloat(document.getElementById("edad").value);
-    const carrera = document.getElementById("carrera").value;
-    const mensaje = document.getElementById("mensaje");
+// Evento: al filtrar por carrera
+filtroCarrera.addEventListener("change", () => {
+    mostrarEstudiantes(filtroCarrera.value);
+});
 
-    if (!nombre || !edad || !carrera) {
-        mensaje.innerText = "Rellene todos los campos";
-        mensaje.style.color = "red";
-        return;
-    }
-    if (edad <= 16) {
-        mensaje.innerText = "Edad no válida";
-        mensaje.style.color = "red";
-        return;
-    }
-    estudiantes.push({ nombre, edad, carrera });
-    mensaje.innerText = "Estudiante registrado correctamente";
-    mensaje.style.color = "green";
-
-    document.getElementById("registroForm").reset();
-    mostrarEstudiantes(estudiantes);
-}
-
-function mostrarEstudiantes(lista) {
-    const tbody = document.querySelector("#tablaEstudiantes tbody");
-    tbody.innerHTML = "";
-    lista.forEach((estudiante, index) => {
-        const row = tbody.insertRow();
-        row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${estudiante.nombre}</td>
-            <td>${estudiante.edad}</td>
-            <td>${estudiante.carrera}</td>
-        `;
-    });
-}
-
-function filtrarPorCarrera() {
-    const filtro = document.getElementById("filtrocarrera").value;
-    const estudiantesFiltrados = filtro === "todos"
-        ? estudiantes
-        : estudiantes.filter(estudiante => estudiante.carrera === filtro);
-    mostrarEstudiantes(estudiantesFiltrados);
-
-}
+// Mostrar al iniciar
+mostrarEstudiantes();
