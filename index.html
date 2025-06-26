@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="">
         <h2> Formulario de Registro</h2>
         <form id="registroForm">
-            Nombre <input type="text" id="nombre" placeholder="Nombre Completo" required><br><br>
-            Edad <input type="number" id="edad" placeholder="Ingresar edad" required min="0"><br><br>
+            <label>Nombre <input type="text" id="nombre" placeholder="Nombre Completo" required><br><br></label>
+            <label>Edad <input type="number" id="edad" placeholder="Ingresar edad" required min="0"><br><br></label>
             <select id="carrera" required>
                 <option value="">Selecciona tu carrera</option>
                 <option value="Ingenieria">Ingenieria</option>
                 <option value="Medicina">Medicina</option>
                 <option value="Derecho">Derecho</option>
-            </select>
+            </select><br><br>
             <button type="submit">Registrar</button>
             <p id="mensaje" class="mensaje"></p>
         </form>
