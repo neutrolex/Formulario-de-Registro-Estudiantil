@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Formulario de Registro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Formulario de Registro Estudiantil</title>
 </head>
 <body>
-    <div>
-    <h2>Formulario de Registro</h2>
-    <form id="formulario">
-        <label>Nombre 
-        <input type="text" id="nombre" placeholder="Nombre Completo" required>
-        </label>
-        <br><br>
-        <label>Edad 
-        <input type="number" id="edad" placeholder="Ingresar edad" required min="0">
-        </label>
-        <br><br>
-        <label>Carrera
-        <select id="carrera" required>
-            <option value="">Selecciona tu carrera</option>
-            <option value="Ingenieria">Ingenieria</option>
-            <option value="Medicina">Medicina</option>
-            <option value="Derecho">Derecho</option>
-        </select>
-        </label>
-        <br><br>
-        <button type="submit">Registrar</button>
-        <p id="error" class="mensaje"></p> 
-    </form>
-
-    <h4>Estudiantes Registrados</h4>
-    <select id="filtroCarrera">
-        <option value="">Todos</option>
-        <option value="Ingenieria">Ingenieria</option>
+  <div>
+    <h2>Formulario de Registro Estudiantil</h2>
+    
+    <form id="registroForm">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Nombre completo" required />
+      <br /><br />
+      
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" placeholder="Edad" required min="1" />
+      <br /><br />
+      
+      <label for="carrera">Carrera:</label>
+      <select id="carrera" required>
+        <option value="">Seleccione su carrera</option>
+        <option value="Ingeniería">Ingeniería</option>
         <option value="Medicina">Medicina</option>
         <option value="Derecho">Derecho</option>
+      </select>
+      <br /><br />
+
+      <button type="submit">Registrar</button>
+      <p id="mensaje" class="mensaje"></p>
+    </form>
+
+    <hr />
+
+    <h4>Estudiantes Registrados</h4>
+    <label for="filtrocarrera">Filtrar por carrera:</label>
+    <select id="filtrocarrera">
+      <option value="todos">Todos</option>
+      <option value="Ingeniería">Ingeniería</option>
+      <option value="Medicina">Medicina</option>
+      <option value="Derecho">Derecho</option>
     </select>
-    <br><br>
+    <br /><br />
 
-    <table id="tabla"> 
-        <thead>
+    <table id="tablaEstudiantes">
+      <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Edad</th>
-            <th>Carrera</th>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Carrera</th>
         </tr>
-        </thead>
-        <tbody></tbody>
+      </thead>
+      <tbody></tbody>
     </table>
+  </div>
 
-    <script src="logica.js"></script>
-    </div>
+  <script src="logica.js"></script>
 </body>
-</html> 
+</html>
